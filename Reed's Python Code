@@ -1,0 +1,8 @@
+from urllib.request import urlretrieve
+
+URL_PATH = 'https://s3.amazonaws.com/tcmg476/http_access_log'
+log_File = 'local_copy.log'
+
+
+# Alt. 2: a progress bar with reduced output (every 1000 blocks)
+local_file, headers = urlretrieve(URL_PATH, log_File, lambda x,y,z: print('.', end='', flush=True) if x % 100 == 0 else False)
