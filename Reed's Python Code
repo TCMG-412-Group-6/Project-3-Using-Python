@@ -21,3 +21,8 @@ for line in open(log_File):
             past_six_months += 1
     
     totalRequests += 1
+
+#print the results        
+print()       
+print("Total Requests Made 6 months starting April 11th, 1994 - Octobober 11th 1995: " + str(past_six_months))
+print("Total Requests from the logfile: " + str(total_requests))
