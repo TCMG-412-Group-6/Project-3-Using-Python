@@ -6,3 +6,18 @@ log_File = 'local_copy.log'
 
 # Alt. 2: a progress bar with reduced output (every 1000 blocks)
 local_file, headers = urlretrieve(URL_PATH, log_File, lambda x,y,z: print('.', end='', flush=True) if x % 100 == 0 else False)
+
+past_six_months = 0
+total_requests = 0
+
+for line in open(log_File):
+    logLineInfo = line.split()
+    
+    if(len(logLineInfo) < 4):
+        continue
+    else:
+        date = logLineInfo[3].split('/')
+        if((date[0][1:] == '12') and (date[1] == 'Apr') and (date[2][:4] == '1995')):
+            past_six_months += 1
+    
+    totalRequests += 1
