@@ -1,0 +1,102 @@
+from ast import Str
+import re
+# use os.path for file checking capability to check if log file has already been downloaded
+from os.path import exists
+import string
+from tokenize import String
+# use urlretrieve to retrieve log file after file check determined log had not already been downloaded
+from urllib.request import urlretrieve
+
+FILE_NAME = 'http_access_log.txt'
+
+# check for log file prescence on system, if found use that file, if not retrieve from web
+if not exists(FILE_NAME):
+    print("Log file not found on system. Log file is being retrieved, please wait.")
+    URL_PATH = 'https://s3.amazonaws.com/tcmg476/http_access_log'
+    LOCAL_FILE = 'http_access_log.txt'
+    local_file, headers = urlretrieve(URL_PATH, LOCAL_FILE)
+    print("Done")
+
+fh = open(FILE_NAME)
+#counter = 0
+#recentcounter = 0
+#month = 0
+#string = {"Oct/1995", "Sep/1995", "Aug/1995", "Jul/1995", "Jun/1995", "May/1995"}
+
+print("Stand By")
+
+#starte line counter, and for loop to count total number of lines in log
+line_count = 0
+for line in fh:
+    if line != "\n":
+        line_count += 1
+fh.close()
+
+#data count for each instance of the phrase for each month
+fh = open(FILE_NAME)
+data = fh.read()
+Oct_1995 = data.count("Oct/1995")
+
+fh = open(FILE_NAME)
+data = fh.read()
+Sep_1995 = data.count("Sep/1995")
+
+fh = open(FILE_NAME)
+data = fh.read()
+Aug_1995 = data.count("Aug/1995")
+
+fh = open(FILE_NAME)
+data = fh.read()
+Jul_1995 = data.count("Jul/1995")
+
+fh = open(FILE_NAME)
+data = fh.read()
+Jun_1995 = data.count("Jun/1995")
+
+fh = open(FILE_NAME)
+data = fh.read()
+May_1995 = data.count("May/1995")
+#simple addition to get the total number of requests in the log file for the requested months.
+monthly_total_log_entry = Oct_1995+Sep_1995+Aug_1995+Jul_1995+Jun_1995+May_1995
+#last_6_months = occurrences1 + occurrences2
+print('The total number of requests during the last 6 months of this log file are:', monthly_total_log_entry)
+print('The total number of requests contained within this log are: ', line_count)
+
+#Count total requests in the log file from Oct 94 to Oct 95
+#for line in open(FILE_NAME):
+#    counter += 1
+
+#Count recent requests, i.e the assigned months. This can be copied/pasted and renamed to expand or reduce the count.
+#search paramaters must include the month and year because log file contains Oct 94 and Oct 95.
+#for line in open(FILE_NAME):
+#    search = re.search(Str,line)
+#    if search:
+#       recentcounter+=1
+
+#for line in open(FILE_NAME):        
+#    search = re.search("Sep/1995",line)
+#    if search:
+#        recentcounter+=1   
+
+#for line in open(FILE_NAME):         
+#    search = re.search("Aug/1995",line)
+#    if search:
+#        recentcounter+=1
+
+#for line in open(FILE_NAME):        
+#    search = re.search("Jul/1995",line)
+#    if search:
+#        recentcounter+=1
+
+#for line in open(FILE_NAME):        
+#    search = re.search("Jun/1995",line)
+#    if search:
+#        recentcounter+=1
+
+#for line in open(FILE_NAME):        
+#    search = re.search("May/1995",line)
+#    if search:
+#        recentcounter+=1
+        
+#Print message
+#print("There were",counter, "requests in total. ", recentcounter, "of them were in the last 6 months.")
