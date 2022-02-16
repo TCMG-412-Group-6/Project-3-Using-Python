@@ -23,7 +23,9 @@ def download_file(url):
 
     new_file.close()
 download_file(file_url)
+# File should be downloaded
 
+# Attempts to make a csv file of all log requests
 def reader(new_file):
     with open(new_file) as f:
         pthree_proj = f.read()
