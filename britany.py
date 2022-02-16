@@ -7,5 +7,8 @@ log_file='log_copy.log'
 
 log_file, headers= urlretrieve(url_path, log_file, lambda x,y,z: print('.', end='',flush=True) if x % 100 == 0 else False)
 
-f=open(log_file)
-lines= f.readlines()
+f = open('log_file','r')
+
+for line in f:
+    print line.split('')
+f.close()
