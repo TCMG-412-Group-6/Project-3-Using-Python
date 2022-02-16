@@ -43,7 +43,11 @@ for line in sesame:
         continue
     else:
         date = logLineInfo[3].split('/')
-        if((date[0][1:] == '12') and (date[1] == 'Apr') and (date[2][:4] == '1995')):
+        #this is only counting the number of entries on the 11th day of each of the months
+        #not sure how to fix without abandoning the format!
+        if((date[0][1:] == '11')
+           and (date[1] == 'Apr' or 'May' or 'Jun' or 'Jul' or 'Aug' or 'Sep' or 'Oct') 
+           and (date[2][:4] == '1995')):
             sixmonths += 1
 sesame.close()
             
